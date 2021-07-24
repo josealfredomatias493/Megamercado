@@ -1,0 +1,67 @@
+rom tkinter import *
+from tkinter.font import families
+from tkinter import ttk
+from fonts import *
+
+class VentanaPrincipal:
+	def __init__(self,master):
+		self.window = master
+		self.main_bar_view()
+		self.ImageLogo()
+		self.menu()
+		self.button()
+
+
+	def main_bar_view(self):
+		self.main_title_reg_pro = Label(self.window, text='MEGAMERCADO', font=('Roboto Mono Bold', 15), bg='#37648B', fg='white')
+		self.main_title_reg_pro.grid()
+		self.user_log = Button(self.window, text='Usuario ADM', font=('Roboto Mono Bold', 15), bg='#37648B', fg='white',relief="flat")
+		self.user_log.place(relx=0.87,rely=0.01)
+		self.User_image=PhotoImage(file="user.png")
+		self.lb_User_image= Label(self.window,image=self.User_image,bg="#37648B").place(relx=0.84,rely=0.011)
+
+
+
+	def ImageLogo (self):
+		self.frame1 = Frame(self.window,bg='white').place(relx=0.25,rely=0.1,relwidth=1,relheight=1)
+		self.label1 = Label(self.frame1,text="MEGAMERCADO",font=('Roboto Mono', 40),bg='white').place (relx=0.60,rely=0.70)
+		self.label2 = Label(self.frame1,text="Calidad y Confianza",font=('Roboto Mono', 20),bg='white').place (relx=0.66,rely=0.80)
+	
+	
+	def menu (self):
+
+		self.menu_treeview = ttk.Treeview(self.window, height=15)
+		self.style = ttk.Style()
+		self.style.configure('Treeview', font=('Roboto Mono', 10), background='#37648B')
+		self.menu_treeview.grid(row=15,column=0)
+
+		self.ag_inicio= self.menu_treeview.insert('', END, text='Inicio')
+
+		self.ag_prod = self.menu_treeview.insert('', END, text='Productos')
+		self.menu_treeview.insert(self.ag_prod, END, text='Añadir producto')
+		self.menu_treeview.insert(self.ag_prod, END, text='Listar productos')
+		self.menu_treeview.insert(self.ag_prod, END, text='Listar productos x almacen')
+
+		self.ped = self.menu_treeview.insert('', END, text='Pedidos')
+		self.menu_treeview.insert(self.ped, END, text='Crear pedido')
+		self.menu_treeview.insert(self.ped, END, text='Listar pedidos')
+
+		self.ventas = self.menu_treeview.insert('', END, text='Ventas')
+		self.menu_treeview.insert(self.ventas, END, text='Reporte de ventas')
+
+		self.facturacion = self.menu_treeview.insert('', END, text='Facturacion')
+		self.menu_treeview.insert(self.facturacion, END, text='Generar factura')
+		self.menu_treeview.insert(self.facturacion, END, text='Listar facturas')
+
+	def button(self):
+		self.Btn1 = Button(self.frame1,text="Clientes",bg="#7ec0ee",font=('Roboto Mono Bold', 15),relief="sunken",width=18,height=3,borderwidth=5).place(relx=0.40,rely=0.20)
+		self.Btn2 = Button(self.frame1,text="Proveedores",bg="#7ec0ee",font=('Roboto Mono Bold', 15),relief="sunken",width=18,height=3,borderwidth=5).place(relx=0.70,rely=0.20)
+		self.Btn3 = Button(self.frame1,text="Almacén",bg="#7ec0ee",font=('Roboto Mono Bold', 15),relief="sunken",width=18,height=3,borderwidth=5).place(relx=0.55,rely=0.40)
+
+
+main_window = Tk ()
+main_window.geometry('1200x600')
+main_window.title("MegaMercado")
+main_window.config(background="#37648B")
+Application = VentanaPrincipal(main_window )
+main_window.mainloop()
